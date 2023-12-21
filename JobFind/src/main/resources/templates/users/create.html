@@ -1,0 +1,199 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:replace="~{fragments/header ::header}" xmlns:th="http://www.thymeleaf.org"></div>
+<body>
+<div th:replace="~{fragments/sidebar ::sidebar}" ></div>
+
+<div class="wrapper d-flex flex-column min-vh-100 bg-light">
+    <header class="header header-sticky mb-4">
+        <div class="container-fluid">
+            <button class="header-toggler px-md-0 me-md-3" type="button"
+                    onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+                <svg class="icon icon-lg">
+                    <use th:href="@{/coreui/vendors/coreui_libs/icons/svg/free.svg#cil-menu}"></use>
+                </svg>
+            </button>
+            <a class="header-brand d-md-none" href="#">
+                <svg width="118" height="46" alt="CoreUI Logo">
+                    <use th:href="@{/coreui/assets/brand/coreui.svg#full}"></use>
+                </svg>
+            </a>
+            <ul class="header-nav d-none d-md-flex">
+                <li class="nav-item"><a class="nav-link" th:href="@{/home}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Users</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
+            </ul>
+            <ul class="header-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#">
+                    <svg class="icon icon-lg">
+                        <use th:href="@{/coreui/vendors/coreui_libs/icons/svg/free.svg#cil-bell}"></use>
+                    </svg>
+                </a></li>
+                <li class="nav-item"><a class="nav-link" href="#">
+                    <svg class="icon icon-lg">
+                        <use th:href="@{/coreui/vendors/coreui_libs/icons/svg/free.svg#cil-list-rich}"></use>
+                    </svg>
+                </a></li>
+                <li class="nav-item"><a class="nav-link" href="#">
+                    <svg class="icon icon-lg">
+                        <use th:href="@{/coreui/vendors/coreui_libs/icons/svg/free.svg#cil-envelope-open}"></use>
+                    </svg>
+                </a></li>
+            </ul>
+            <ul class="header-nav ms-3" >
+                <li> <p>Hi, Welcome Back <span style="font-weight:bold" sec:authentication="principal.username" > !</span>
+                    <br>
+                    Role(s): <span sec:authentication="principal.authorities"></span></p> </li>
+                <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#"
+                                                 role="button" aria-haspopup="true" aria-expanded="false">
+                    <div class="avatar avatar-md"><img class="avatar-img" th:src="@{${user.getAvatarImgPath()}}"
+                                                       alt="user@email.com"></div>
+                </a>
+                    <div class="dropdown-menu dropdown-menu-end pt-0">
+                        <div class="dropdown-header bg-light py-2">
+                            <div class="fw-semibold">Account</div>
+                        </div>
+                        <a class="dropdown-item" href="#">
+                            <svg class="icon me-2">
+                                <use th:href="@{/coreui/vendors/coreui_libs/icons/svg/free.svg#cil-bell}"></use>
+                            </svg>
+                            Updates<span class="badge badge-sm bg-info ms-2">42</span></a><a class="dropdown-item"
+                                                                                             href="#">
+                        <svg class="icon me-2">
+                            <use th:href="@{/coreui/vendors/coreui_libs/icons/svg/free.svg#cil-envelope-open}"></use>
+                        </svg>
+                        Messages<span class="badge badge-sm bg-success ms-2">42</span></a><a class="dropdown-item"
+                                                                                             href="#">
+                        <svg class="icon me-2">
+                            <use th:href="@{/coreui/vendors/coreui_libs/icons/svg/free.svg#cil-task}"></use>
+                        </svg>
+                        Tasks<span class="badge badge-sm bg-danger ms-2">42</span></a><a class="dropdown-item" href="#">
+                        <svg class="icon me-2">
+                            <use th:href="@{/coreui/vendors/coreui_libs/icons/svg/free.svg#cil-comment-square}"></use>
+                        </svg>
+                        Comments<span class="badge badge-sm bg-warning ms-2">42</span></a>
+                        <div class="dropdown-header bg-light py-2">
+                            <div class="fw-semibold">Settings</div>
+                        </div>
+                        <a class="dropdown-item" href="#">
+                            <svg class="icon me-2">
+                                <use th:href="@{/coreui/vendors/coreui_libs/icons/svg/free.svg#cil-user}"></use>
+                            </svg>
+                            Profile</a><a class="dropdown-item" href="#">
+                        <svg class="icon me-2">
+                            <use th:href="@{/coreui/vendors/coreui_libs/icons/svg/free.svg#cil-settings}"></use>
+                        </svg>
+                        Settings</a><a class="dropdown-item" href="#">
+                        <svg class="icon me-2">
+                            <use th:href="@{coreui/vendors/coreui_libs/icons/svg/free.svg#cil-credit-card}"></use>
+                        </svg>
+                        Payments<span class="badge badge-sm bg-secondary ms-2">42</span></a><a class="dropdown-item"
+                                                                                               href="#">
+                        <svg class="icon me-2">
+                            <use th:href="@{/coreui/vendors/coreui_libs/icons/svg/free.svg#cil-file}"></use>
+                        </svg>
+                        Projects<span class="badge badge-sm bg-primary ms-2">42</span></a>
+                        <div class="dropdown-divider"></div>
+                        <form th:action="@{/logout}" method="post" >
+                            <button class="dropdown-item" type="submit">
+                                Logout
+                            </button>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="header-divider"></div>
+        <div class="container-fluid">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb my-0 ms-2">
+                    <li class="breadcrumb-item">
+                        <!-- if breadcrumb is single--><span>Home</span>
+                    </li>
+                    <li class="breadcrumb-item active"><span>Users</span></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+    <div class="body flex-grow-1 px-3" xmlns:th="http://www.thymeleaf.org">
+        <div class="container-lg">
+            <form action="#" th:action="@{/users/save}" th:object="${currentUser}"
+                  method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label" for="username">Username</label>
+                        <input class="form-control" id="username" type="text" th:field="*{username}"/>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="password">Password</label>
+                        <input class="form-control" id="password" type="text" th:field="*{password}"/>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label" for="displayName">Display Name</label>
+                        <input class="form-control" id="displayName" type="text" th:field="*{displayName}"/>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="email">Email</label>
+                        <input class="form-control" id="email" type="email" th:field="*{email}"/>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                    <label class="form-label" for="role" >Role</label>
+                        <select th:field="*{roles}"  id="role" class="form-select form-select-sm mb-3" >
+                            <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+                        </select>
+                  </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Status</label>
+                    <div class="form-check form-switch">
+                        <input type="checkbox" class="form-check-input" role="switch" id="flexSwitchCheckChecked" th:field="*{status}"
+                             checked>
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Active account</label>
+                    </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="hidden" th:field="*{avatar}">
+                        <label class="form-label" for="avatar">Avatar</label>
+                        <input class="form-control" id="avatar" name="image" type="file" accept="image/*" required="true"/>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Channel</label>
+<!--                        <input class="form-control" id="status" type="text" th:field="*{status}"/>-->
+                        <select th:field="*{channel}" class="form-select form-select-sm" aria-label="form-select form-select-sm" >
+                            <option th:value="true">1</option>
+                            <option th:value="false">0</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Thêm mới</button>
+            </form>
+            </br>
+            <a th:href="@{/users}">Back to List User</a>
+        </div>
+    </div>
+    <footer class="footer">
+        <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> © 2023
+            creativeLabs.
+        </div>
+        <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>
+    </footer>
+</div>
+<div th:replace="~{fragments/footer ::footer}" xmlns:th="http://www.thymeleaf.org"></div>
+</body>
+</html>
+
+

@@ -1,0 +1,60 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:replace="~{fragments/header ::header}" xmlns:th="http://www.thymeleaf.org"></div>
+<body>
+<div th:replace="~{fragments/sidebar ::sidebar}" xmlns:th="http://www.thymeleaf.org"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div class="wrapper d-flex flex-column min-vh-100 bg-light">
+    <header class="header header-sticky mb-4">
+        <div th:replace="~{fragments/nav-tag :: nav-tag}"></div>
+        <div class="header-divider"></div>
+        <div class="container-fluid">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb my-0 ms-2">
+                    <li class="breadcrumb-item">
+                        <!-- if breadcrumb is single--><span>Home</span>
+                    </li>
+                    <li class="breadcrumb-item active"><span>Users</span></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+    <div class="body flex-grow-1 px-3" xmlns:th="http://www.thymeleaf.org">
+        <div class="container-lg">
+            <form action="#" th:action="@{/roles/save}" th:object="${role}"
+                  method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label" for="rolename">Role name</label>
+                        <input class="form-control" id="rolename" type="text" th:field="*{name}"/>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="slug">Slug</label>
+                        <input class="form-control" id="slug" type="text" th:field="*{slug}" readonly/>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Thêm mới</button>
+            </form>
+        </div>
+    </div>
+    <footer class="footer">
+        <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> © 2023
+            creativeLabs.
+        </div>
+        <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>
+    </footer>
+</div>
+<div th:replace="~{fragments/footer ::footer}" xmlns:th="http://www.thymeleaf.org"></div>
+<script type="text/javascript">
+    $('#rolename').keyup(function (){
+    $('#slug').val($(this).val());
+});
+$('#slug').keyup(function (){
+    $('#rolenmame').val($(this).val());
+});
+</script>
+
+</body>
+</html>
+
+

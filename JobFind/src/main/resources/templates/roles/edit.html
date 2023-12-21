@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div th:replace="~{fragments/header ::header}" xmlns:th="http://www.thymeleaf.org"></div>
+<body>
+<div th:replace="~{fragments/sidebar ::sidebar}" xmlns:th="http://www.thymeleaf.org"></div>
+
+<div class="wrapper d-flex flex-column min-vh-100 bg-light">
+    <div th:replace="~{fragments/nav-tag :: nav-tag}"></div>
+    <div align="center">
+        <h1>Edit Role</h1>
+        <br/>
+        <form action="#" th:action="@{/roles/save}" th:object="${role}"
+              method="post">
+
+            <table border="0" cellpadding="10">
+                <tr>
+                    <td>Product ID:</td>
+                    <td>
+                        <input type="text" th:field="*{id}" readonly="readonly" class="form-control"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Role Name:</td>
+                    <td>
+                        <input type="text" id="rolename" th:field="*{name}" class="form-control"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Slug:</td>
+                    <td><input type="text" id="slug" th:field="*{slug}" class="form-control" readonly/></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <footer class="footer">
+        <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> © 2023
+            creativeLabs.
+        </div>
+        <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>
+    </footer>
+</div>
+<div th:replace="~{fragments/footer ::footer}" xmlns:th="http://www.thymeleaf.org"></div>
+
+<script type="text/javascript">
+     $('#rolename').keyup(function (){
+    $('#slug').val($(this).val());
+});
+</script>
+</body>
+</html>

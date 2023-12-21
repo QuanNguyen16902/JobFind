@@ -1,0 +1,45 @@
+/* reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* general */
+body {
+    background-color: #EFEFEF;
+}
+
+
+/* page */
+.page-wrapper {
+    margin: 0 auto;
+    width: 300px;
+  /*  max-width: 50%;*/
+}
+
+
+/* box */
+.box-content {
+    padding:20px;
+    background-color: #EFEFEF;
+}
+
+
+textarea {
+    background-color:#FAFAFA;
+    border:#EFEFEF solid 1px;
+    color:#333;
+    height:50px;
+    width:300px;
+}
+
+
+/* richtext custom style */
+.richText {
+    margin-top: 8px;
+ /*-webkit-box-shadow: 0 0 20px 0 #999;
+       -moz-box-shadow: 0 0 20px 0 #999;
+    box-shadow: 0 0 20px 0 #999;*/
+}

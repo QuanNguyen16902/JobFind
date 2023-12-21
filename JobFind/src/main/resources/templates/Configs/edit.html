@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="~{fragments/header ::header}" xmlns:th="http://www.thymeleaf.org"></div>
+<body>
+<div th:replace="~{fragments/sidebar ::sidebar}" xmlns:th="http://www.thymeleaf.org"></div>
+<head>
+    <link rel="stylesheet" th:href="@{/coreui/richtext/css/site.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!--    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>-->
+    <link rel="stylesheet" th:href="@{/coreui/richtext/richtext.min.css}" />
+    <script th:src="@{/coreui/richtext/jquery.richtext.min.js}"></script>
+</head>
+<div class="wrapper d-flex flex-column min-vh-100 bg-light">
+    <header class="header header-sticky mb-4">
+        <div th:replace="~{fragments/nav-tag :: nav-tag}"></div>
+        <div class="header-divider"></div>
+        <div class="container-fluid">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb my-0 ms-2">
+                    <li class="breadcrumb-item">
+                        <!-- if breadcrumb is single--><span>Home</span>
+                    </li>
+                    <li class="breadcrumb-item active"><span>Dashboard</span></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+    <div align="center">
+        <h1>Edit Config</h1>
+        <br/>
+        <form action="#" th:action="@{/configs/save}" th:object="${config}"
+              method="post">
+
+            <table border="0" cellpadding="20">
+                <tr>
+                    <td>ID:</td>
+                    <td>
+                        <input type="text" th:field="*{id}" readonly="readonly" class="form-control"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Key:</td>
+                    <td>
+                        <input type="text" th:field="*{key}" class="form-control"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Value:</td>
+                    <td><input type="text" th:field="*{value}" class="form-control"/></td>
+                </tr>
+
+                <tr>
+                    <td>Description:</td>
+                    <td>
+                        <textarea type="text" rows="2" class="description" id="description"
+                                  th:field="*{description}"
+                        ></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Group:</td>
+                    <td><input type="text" th:field="*{group}" class="form-control"/></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <footer class="footer">
+        <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> © 2023
+            creativeLabs.
+        </div>
+        <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI Components</a></div>
+    </footer>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#description").richText();
+    });
+</script>
+<div th:replace="~{fragments/footer ::footer}" xmlns:th="http://www.thymeleaf.org"></div>
+
+
+<script type="text/javascript" th:src="@{/coreui/js/img.js}"></script>
+</body>
+</html>
